@@ -37,7 +37,8 @@ TARGET        = "Label"
 N_FOLDS       = 5
 RANDOM_STATE  = 42
 N_TRIALS      = 30
-TOP_N         = 20
+TOP_N            = 20
+FEATURE_SELECT_N = 20   # 62 NEG icin kurs boyutu kisitlamasi
 
 
 def sep(title=""):
@@ -82,6 +83,17 @@ def find_best_threshold(y_true: np.ndarray, y_prob: np.ndarray,
         if score > best_score:
             best_score, best_t = score, float(t)
     return best_t, best_score
+
+
+def select_top_features(X: pd.DataFrame, y: pd.Series, top_n: int) -> list:
+    cb = CatBoostClassifier(
+        iterations=300, depth=4, l2_leaf_reg=5,
+        auto_class_weights="Balanced",
+        random_seed=RANDOM_STATE, verbose=0,
+    )
+    cb.fit(X, y)
+    imp = pd.Series(cb.feature_importances_, index=X.columns)
+    return imp.nlargest(top_n).index.tolist()
 
 
 def build_catboost(params: dict) -> CatBoostClassifier:
@@ -159,6 +171,14 @@ def train():
     if n_neg < 5:
         print(f"  [UYARI] Cok az negatif ornek ({n_neg}), egitim iptal.")
         return
+
+    # ── Ozellik secimi (boyut laneti onleme) ──────────────────
+    n_all = X.shape[1]
+    sep(f"OZELLIK SECIMI  (top {FEATURE_SELECT_N} / {n_all})")
+    print("  CatBoost onem siralaması hesaplaniyor...", flush=True)
+    selected = select_top_features(X, y, FEATURE_SELECT_N)
+    X = X[selected]
+    print(f"  {len(selected)} ozellik secildi ({n_all} icerisinden)")
 
     # ── Optuna: CatBoost hiperparametre arama ─────────────────
     sep(f"OPTUNA - CatBoost Bayesian Optimizasyon ({N_TRIALS} deneme)")
