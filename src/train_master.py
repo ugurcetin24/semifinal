@@ -29,9 +29,9 @@ optuna.logging.set_verbosity(optuna.logging.WARNING)
 warnings.filterwarnings("ignore")
 
 PANEL         = "MASTER"   # <-- sadece bu satır her dosyada değişir
-ROOT          = Path(__file__).parent.parent
-PROCESSED_DIR = ROOT / "data" / "processed"
-OUTPUTS_DIR   = ROOT / "outputs"
+ROOT      = Path(__file__).parent.parent
+RAW_DIR   = ROOT / "data" / "raw"
+OUTPUTS_DIR = ROOT / "outputs"
 METRICS_DIR   = OUTPUTS_DIR / "metrics"
 TARGET        = "Label"
 N_FOLDS       = 5
@@ -56,8 +56,7 @@ def load_features():
     sys.path.insert(0, str(Path(__file__).parent))
     from bio_features import add_bio_features
 
-    raw   = pd.read_csv(PROCESSED_DIR / "combined_raw.csv", low_memory=False)
-    raw_p = raw[raw["panel"] == PANEL].reset_index(drop=True)
+    raw_p = pd.read_csv(RAW_DIR / f"YARISMA_TRAIN_{PANEL}.csv", low_memory=False)
     df    = raw_p.copy().drop(columns=["Variant_ID", "panel"], errors="ignore")
 
     for col in [c for c in df.columns if c.startswith("CAT_")]:
