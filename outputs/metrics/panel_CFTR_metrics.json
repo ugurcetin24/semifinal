@@ -1,16 +1,11 @@
 {
   "panel": "CFTR",
-  "threshold": 0.505,
-  "oof_auc": 0.9005,
-  "oof_mcc": 0.7311,
-  "macro_f1": 0.8654,
-  "f1_neg": 0.7805,
-  "f1_pos": 0.9503,
-  "best_params": {
-    "iterations": 281,
-    "depth": 6,
-    "l2_leaf_reg": 10.992059691611185,
-    "learning_rate": 0.015677865772618052,
-    "bagging_temperature": 0.5030911215349643
-  }
+  "threshold": 0.849,
+  "oof_auc": 0.9997,
+  "oof_mcc": 0.9783,
+  "macro_f1": 0.9891,
+  "f1_neg": 0.9892,
+  "f1_pos": 0.989,
+  "pathogenic_recall": 0.9818,
+  "benign_recall": 0.9964
 }

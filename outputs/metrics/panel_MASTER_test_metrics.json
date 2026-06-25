@@ -1,0 +1,10 @@
+{
+  "panel": "MASTER",
+  "split": "TEST",
+  "threshold": 0.5,
+  "auc": 0.8126,
+  "mcc": 0.2765,
+  "macro_f1": 0.6096,
+  "f1_neg": 0.8907,
+  "f1_pos": 0.3286
+}

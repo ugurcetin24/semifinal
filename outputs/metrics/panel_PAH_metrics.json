@@ -1,18 +1,10 @@
 {
   "panel": "PAH",
-  "threshold": 0.45,
-  "oof_auc": 0.8313,
-  "oof_mcc": 0.5478,
-  "macro_f1": 0.7721,
-  "f1_neg": 0.614,
-  "f1_pos": 0.9302,
-  "best_params": {
-    "iterations": 271,
-    "depth": 5,
-    "l2_leaf_reg": 19.31763814691283,
-    "learning_rate": 0.042863963051848704,
-    "bagging_temperature": 0.21622648208437212,
-    "min_data_in_leaf": 1,
-    "colsample_bylevel": 0.6585605063847357
-  }
+  "threshold": 0.445,
+  "oof_auc": 0.959,
+  "oof_mcc": 0.8362,
+  "macro_f1": 0.9176,
+  "f1_neg": 0.9046,
+  "f1_pos": 0.9306,
+  "best_params": {}
 }

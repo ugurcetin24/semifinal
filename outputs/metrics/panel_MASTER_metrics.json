@@ -1,16 +1,11 @@
 {
   "panel": "MASTER",
-  "threshold": 0.385,
-  "oof_auc": 0.8567,
-  "oof_mcc": 0.5792,
-  "macro_f1": 0.7834,
-  "f1_neg": 0.6681,
-  "f1_pos": 0.8987,
-  "best_params": {
-    "iterations": 583,
-    "depth": 5,
-    "l2_leaf_reg": 10.43409808516703,
-    "learning_rate": 0.01626376048584415,
-    "bagging_temperature": 0.003972245062928842
-  }
+  "threshold": 0.522,
+  "oof_auc": 0.9423,
+  "oof_mcc": 0.7587,
+  "macro_f1": 0.8782,
+  "f1_neg": 0.8737,
+  "f1_pos": 0.8826,
+  "pathogenic_recall": 0.9148,
+  "benign_recall": 0.8418
 }
